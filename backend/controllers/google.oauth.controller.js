@@ -2,13 +2,15 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
+
+
+
 export const getAuthorizationUrlFromGoogle = async (req, res) => {
-    let data;
-    
+   
     const authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
     const parameters = {
-        redirect_uri: process.env.YOUR_REDIRECT_URL,
-        client_id: process.env.YOUR_CLIENT_ID,
+        redirect_uri: process.env.GOOGLE_REDIRECT_URL,
+        client_id: process.env.GOOGLE_CLIENT_ID,
         access_type: "offline",
         response_type: "code",
         prompt: "consent",
@@ -23,7 +25,7 @@ export const getAuthorizationUrlFromGoogle = async (req, res) => {
         queryParams += `${element}=${parameters[element]}&`
     })
     queryParams = queryParams.slice(0, -1)
-
+console.log("queryParams : ", queryParams)
     res.send({ status: 200, "url": queryParams })
 }
 
@@ -33,9 +35,9 @@ export const getTokensFromGoogle = async (req, res) => {
         const tokenEndpoint = "https://oauth2.googleapis.com/token";
         const bodyParameters = {
             code: authorizationCode,
-            client_id: process.env.YOUR_CLIENT_ID,
-            client_secret: process.env.YOUR_CLIENT_SECRET,
-            redirect_uri: process.env.YOUR_REDIRECT_URL,
+            client_id: process.env.GOOGLE_CLIENT_ID,
+            client_secret: process.env.GOOGLE_CLIENT_SECRET,
+            redirect_uri: process.env.GOOGLE_REDIRECT_URL,
             grant_type: "authorization_code",
         };
 

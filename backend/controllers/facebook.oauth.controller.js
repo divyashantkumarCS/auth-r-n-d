@@ -5,13 +5,12 @@ import jwt from 'jsonwebtoken';
 
 config();
 
-
 export const getLoginDialog = async (req, res) => {
     const endpoint = 'https://www.facebook.com/v20.0/dialog/oauth';
 
     const parameters = {
-        client_id: process.env.APP_ID,
-        redirect_uri: process.env.YOUR_REDIRECT_URL,
+        client_id: process.env.FACEBOOK_APP_ID,
+        redirect_uri: process.env.FACEBOOK_REDIRECT_URL,
         scope: "email,public_profile",
         response_type: "code",
         state: "{st=state123abc,ds=123456789}", // kind of secret to prevent CSRF attack
@@ -97,9 +96,9 @@ export const getUserData = async (userId, user_access_token) => {
 // https://developers.facebook.com/docs/facebook-login/guides/advanced/manual-flow/
 export const facebookOauth = async (req, res) => {
 
-    const app_id = process.env.APP_ID;
-    const app_secret = process.env.APP_SECRET;
-    const redirect_uri = process.env.YOUR_REDIRECT_URL;
+    const app_id = process.env.FACEBOOK_APP_ID;
+    const app_secret = process.env.FACEBOOK_APP_SECRET;
+    const redirect_uri = process.env.FACEBOOK_REDIRECT_URL;
     const code_params = req?.query?.code;
 
     // Confirming Identity and Get  USER ACCESS TOKEN
@@ -125,7 +124,7 @@ export const facebookOauth = async (req, res) => {
 
     // else make api call to get the user data and store it in db  and the login the user in the application.
     const userData = await getUserData(userId, user_access_token);
-    console.log(userData)
+    console.log("userData : ", userData)
 
     /*
         userData :  {
@@ -172,9 +171,16 @@ export const facebookOauth = async (req, res) => {
     }
 }
 
+export const facebookDeauthorize = async (req, res) => {
+
+}
+
+export const facebookDataDeletion = async (req, res) => {
+
+}
 
 /**
- * for (let i = 0; i < permissionsData.length; i++) {
+    for (let i = 0; i < permissionsData.length; i++) {
         if (permissionsData[i].permission == "email" && permissionsData[i].status == "declined") {
             res.redirect(reRequestPermissions(app_id, redirect_uri, 'email'));
         }
@@ -190,13 +196,20 @@ export const facebookOauth = async (req, res) => {
     So instead of directly redirecting to the same page we can choose some other alternatives.
  */
 
-    /*
-        // Detecting When People Uninstall Apps
-        // https://developers.facebook.com/docs/facebook-login/guides/advanced/manual-flow/
+    
+/*
+    // Detecting When People Uninstall Apps
+    // https://developers.facebook.com/docs/facebook-login/guides/advanced/manual-flow/
 
-        If want nottification, if user uninsall app from their facebook account(meaning if delete the websites on which they have loggedin using their facebook account -> here our website(not exactly meaning it but somewhere similar to that))
-        
-        Then setup and enable a deauthorize callback through the App Dashboard.
-        // Data Deletion Request Callback
-        // https://developers.facebook.com/docs/development/create-an-app/app-dashboard/data-deletion-callback
-     */
+    If want nottification, if user uninsall app from their facebook account(meaning if delete the websites on which they have loggedin using their facebook account -> here our website(not exactly meaning it but somewhere similar to that))
+    
+    Then setup and enable a deauthorize callback through the App Dashboard.
+    // Data Deletion Request Callback
+    // https://developers.facebook.com/docs/development/create-an-app/app-dashboard/data-deletion-callback
+ */
+
+
+/**
+ * WE Probably need to Add => A URL to instructions or a callback that allows a user to delete their data from your app
+ */
+

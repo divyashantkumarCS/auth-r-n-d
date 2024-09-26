@@ -15,7 +15,7 @@ function Header() {
       return false;
     })
     const isTokenExist = token[0] ? (token[0].split("="))[1] : false;
-    console.log(isTokenExist)
+    
     return isTokenExist ? true : false
   }
 
