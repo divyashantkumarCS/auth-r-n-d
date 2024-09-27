@@ -44,7 +44,7 @@ export const getUserAccessToken = async (client_id, client_secret, code) => {
     });
     /*
         {
-            access_token: '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',
+            access_token: '',
             token_type: 'bearer',
             scope: ''
         }
