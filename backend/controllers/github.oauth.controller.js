@@ -44,6 +44,7 @@ export const getUserAccessToken = async (client_id, client_secret, code) => {
     });
    
     return response?.data?.access_token;
+    
 }
 
 // https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps#3-use-the-access-token-to-access-the-api
