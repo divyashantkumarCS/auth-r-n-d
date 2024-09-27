@@ -1,6 +1,14 @@
 
+import axios from 'axios';
+import {baseUrl} from '../data/index'
 
 function Instagram() {
+  
+  const getAuthorizationDialogUrl = async () => {
+    const response = await axios.get(`${baseUrl}/api/v1/getInstaAuthorizationUrl`);
+    window.location.href = response?.data?.url;
+  }  
+
   return (
     <>
       <div className="mx-auto max-w-2xl py-10 sm:py-10 lg:py-15">
@@ -12,12 +20,12 @@ function Instagram() {
             Click on the button below to Login with Instagram!
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="#"
+            <button
+            onClick={getAuthorizationDialogUrl}
               className="rounded-md bg-[#E1306C] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#C13584] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Login with Instagram
-            </a>
+            </button>
           </div>
         </div>
       </div>
