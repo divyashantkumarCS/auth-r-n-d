@@ -42,13 +42,7 @@ export const getUserAccessToken = async (client_id, client_secret, code) => {
             'accept': 'application/json'
         }
     });
-    /*
-        {
-            access_token: '',
-            token_type: 'bearer',
-            scope: ''
-        }
-    */
+   
     return response?.data?.access_token;
 }
 
