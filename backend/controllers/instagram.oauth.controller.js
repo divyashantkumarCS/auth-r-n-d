@@ -50,8 +50,8 @@ export const getUserAccessToken = async (app_id, app_secret, redirect_uri, code)
 
     /*
         response.data: {
-            access_token: 'IGQWRNX2NwSUF4YkUxMjBQaXhuaVluNmNtSktuREV6a01JWUVOY1IyajZAic2t0eWdBRzJORk1Nam5hV3JjMUF3WkxxTElnMXZAvX05scGhyd1RENTdCMmtXMG9lbFF1bW83MVA2STVHZAG4zbFFPRmg2ZAW5FYkRra29UczJDQ0ZAIZAGZAXUQZDZD',
-            user_id: 8239300629500024,
+            access_token: '<access_token>',
+            user_id: numbers,
             permissions: [
                 'instagram_business_basic',
                 'instagram_business_manage_messages',
@@ -63,7 +63,7 @@ export const getUserAccessToken = async (app_id, app_secret, redirect_uri, code)
     return response?.data;
 }
 
-// Step 2. Exchange the user's short-lived access token For a user's long-lived access token Token(60 days)
+// Step . Exchange the user's short-lived access token For a user's long-lived access token Token(60 days)
 // https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/business-login#embed-the-business-login-url
 export const getLongLivedUserAccessToken = async (app_secret, user_access_token) => {
     const endpoint = 'https://graph.instagram.com/access_token';
