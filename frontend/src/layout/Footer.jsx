@@ -39,14 +39,19 @@ function Footer() {
                     Github
                   </Link>
                 </li>
-                <li>
+                <li className="mb-4">
                   <Link to="pinterest/auth" className="hover:underline">
                     Pinterest
                   </Link>
                 </li>
-                <li>
+                <li className="mb-4">
                   <Link to="twitter/auth" className="hover:underline">
-                    twitter
+                    twitter 2.0
+                  </Link>
+                </li>
+                <li>
+                  <Link to="1.0a/twitter/auth" className="hover:underline">
+                    twitter 1.0a
                   </Link>
                 </li>
               </ul>
