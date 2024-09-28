@@ -13,6 +13,7 @@ export const getGithubAuthorizationUrl = async (req, res) => {
     const endpoint = "https://github.com/login/oauth/authorize";
     const parameters = {
         client_id: appconf.GITHUB_CLIENT_ID,
+        state: "skd faf alsf akjf", // kind of secret to prevent CSRF attack
     }
 
     let queryParams = '';

@@ -2,27 +2,37 @@ import { Router } from "express";
 import {
     getAuthorizationUrlFromGoogle,
     getTokensFromGoogle
-} from "../controllers/google.oauth.controller.js";
-
+} from "../controllers/google.oauth2.controller.js";
 import {
     facebookDataDeletion,
     facebookDeauthorize,
     facebookOauth,
     getLoginDialog
-} from "../controllers/facebook.oauth.controller.js";
-
+} from "../controllers/facebook.oauth2.controller.js";
 import {
     getInstaAuthorizationUrl,
     instagramDataDeletion,
     instagramDeauthorize,
     oAuthCallback
-} from "../controllers/instagram.oauth.controller.js";
-import { 
-    getGithubAuthorizationUrl, 
-    githubDataDeletion, 
-    githubDeauthorize, 
-    githubOAuthCallback 
-} from "../controllers/github.oauth.controller.js";
+} from "../controllers/instagram.oauth2.controller.js";
+import {
+    getGithubAuthorizationUrl,
+    githubDataDeletion,
+    githubDeauthorize,
+    githubOAuthCallback
+} from "../controllers/github.oauth2.controller.js";
+import {
+    getPintrestAuthorizationUrl,
+    pintrestOAuthCallback,
+    pintrestDeauthorize,
+    pintrestDataDeletion,
+} from "../controllers/pintrest.oauth2.controller.js";
+import {
+    getTwitterAuthorizationUrl,
+    twitterOAuthCallback,
+    twitterDeauthorize,
+    twitterDataDeletion
+} from "../controllers/twitter.oauth2.controller.js";
 
 export const oAuthRouter = Router();
 
@@ -61,3 +71,22 @@ oAuthRouter.get('/getGithubAuthorizationUrl', getGithubAuthorizationUrl);
 oAuthRouter.get('/github-callback/auth', githubOAuthCallback);
 oAuthRouter.get('/github/deauthorize', githubDeauthorize);
 oAuthRouter.get('/github/data_deletion', githubDataDeletion);
+
+
+
+// PINTREST oauth routes
+oAuthRouter.get('/getPintrestAuthorizationUrl', getPintrestAuthorizationUrl);
+// instagram redirect endpoint
+oAuthRouter.get('/pintrest-callback/auth', pintrestOAuthCallback);
+oAuthRouter.get('/pintrest/deauthorize', pintrestDeauthorize);
+oAuthRouter.get('/pintrest/data_deletion', pintrestDataDeletion);
+
+
+
+// TWITTER oauth routes
+oAuthRouter.get('/getTwitterAuthorizationUrl', getTwitterAuthorizationUrl);
+// instagram redirect endpoint
+oAuthRouter.get('/twitter-callback/auth', twitterOAuthCallback);
+oAuthRouter.get('/twitter/deauthorize', twitterDeauthorize);
+oAuthRouter.get('/twitter/data_deletion', twitterDataDeletion);
+

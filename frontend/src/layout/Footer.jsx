@@ -44,6 +44,11 @@ function Footer() {
                     Pinterest
                   </Link>
                 </li>
+                <li>
+                  <Link to="twitter/auth" className="hover:underline">
+                    twitter
+                  </Link>
+                </li>
               </ul>
             </div>
 

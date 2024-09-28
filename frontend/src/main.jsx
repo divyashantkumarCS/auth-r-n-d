@@ -9,6 +9,7 @@ import Facebook from './pages/Facebook';
 import Github from './pages/Github';
 import Instagram from './pages/Instagram';
 import Pinterest from './pages/Pinterest';
+import Twitter from './pages/Twitter'
 
 
 export const router = createBrowserRouter(
@@ -20,6 +21,7 @@ export const router = createBrowserRouter(
       <Route path='github/auth' element={<Github />} />
       <Route path='instagram/auth' element={<Instagram />} />
       <Route path='pinterest/auth' element={<Pinterest />} />
+      <Route path='twitter/auth' element={<Twitter />} />
     </Route>  
   )
 )

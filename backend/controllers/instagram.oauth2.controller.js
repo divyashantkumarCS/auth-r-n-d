@@ -63,7 +63,8 @@ export const getUserAccessToken = async (app_id, app_secret, redirect_uri, code)
     return response?.data;
 }
 
-// Step . Exchange the user's short-lived access token For a user's long-lived access token Token(60 days)
+// Step 3.  Get a long-lived access token
+// Exchange the user's short-lived access token For a user's long-lived access token Token(60 days)
 // https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/business-login#embed-the-business-login-url
 export const getLongLivedUserAccessToken = async (app_secret, user_access_token) => {
     const endpoint = 'https://graph.instagram.com/access_token';
