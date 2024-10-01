@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import { baseUrl } from '../data/index';
+import { useEffect } from 'react';
 
 function Pininterest() {
 
@@ -8,6 +9,11 @@ const getAuthorizationUrl = async () => {
     const response = await axios.get(`${baseUrl}/api/v1/1.0a/getTwitteraAuthorizationUrl`);
     window.location.href = response?.data?.url;
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   return (
     <>      

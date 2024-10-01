@@ -1,7 +1,55 @@
+
+
 import { useEffect, useState } from "react"
-import { NavLink, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
+import Dropdown from "../components/Dropdown";
+import LoginDialog from "../components/LoginDialog";
 
 function Header() {
+  const oAuth1Options = [
+    {
+      link: '1.0a/twitter/auth',
+      name: "Twitter 1.0a"
+    },
+  ]
+  const oAuth2Options = [
+    {
+      link: 'google/auth',
+      name: 'Google 2.0',
+    },
+    {
+      link: 'facebook/auth',
+      name: 'Facebook 2.0',
+    },
+    {
+      link: 'instagram/auth',
+      name: 'Instagram 2.0',
+    },
+    {
+      link: 'github/auth',
+      name: 'Github 2.0',
+    },
+    {
+      link: 'pinterest/auth',
+      name: 'Pinterest 2.0',
+    },
+    {
+      link: 'twitter/auth',
+      name: 'Twitter 2.0',
+    },
+  ]
+  const oAuth21Options = [
+    {
+      link: '#',
+      name: "Google 2.1"
+    },
+  ]
+  const openIdConnectOptions = [
+    {
+      link: '#',
+      name: "Google OpenId"
+    },
+  ]
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -42,15 +90,10 @@ function Header() {
               alt="Logo"
             />
           </Link>
+
           <div className="flex items-center lg:order-2">
             {
-              !isLoggedIn ?
-                <button
-                  className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-                >
-                  Log in
-                </button> :
-                ''
+              !isLoggedIn ? <LoginDialog /> : ''
             }
             {
               isLoggedIn ?
@@ -64,87 +107,24 @@ function Header() {
             }
 
           </div>
+
           <div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
           >
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+            <ul className="flex justify-end flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+
               <li>
-                <NavLink
-                  to='google/auth'
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 ${isActive ? 'text-orange-700' : 'text-gray-700'}`
-                  }
-                >
-                  Google
-                </NavLink>
+                <Dropdown menuname={'OAuth 1.0a'} options={oAuth1Options} />
               </li>
-
               <li>
-                <NavLink
-                  to='facebook/auth'
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 ${isActive ? 'text-orange-700' : 'text-gray-700'}`
-                  }
-                >
-                  Facebook
-                </NavLink>
+                <Dropdown menuname={'OAuth 2.0'} options={oAuth2Options} />
               </li>
-
               <li>
-                <NavLink
-                  to='instagram/auth'
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 ${isActive ? 'text-orange-700' : 'text-gray-700'} `
-                  }
-                >
-                  Instagram
-                </NavLink>
+                <Dropdown menuname={'OAuth 2.1'} options={oAuth21Options} />
               </li>
-
               <li>
-                <NavLink
-                  to='github/auth'
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 ${isActive ? 'text-orange-700' : 'text-gray-700'}`
-                  }
-                >
-                  Github
-                </NavLink>
-              </li>
-
-
-              <li>
-                <NavLink
-                  to='pinterest/auth'
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 ${isActive ? 'text-orange-700' : 'text-gray-700'} `
-                  }
-                >
-                  Pinterest
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink
-                  to='twitter/auth'
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 ${isActive ? 'text-orange-700' : 'text-gray-700'} `
-                  }
-                >
-                  Twitter 2.0
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink
-                  to='1.0a/twitter/auth'
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0 ${isActive ? 'text-orange-700' : 'text-gray-700'} `
-                  }
-                >
-                  Twitter 1.0a
-                </NavLink>
+                <Dropdown menuname={'OpenID Connect '} options={openIdConnectOptions} />
               </li>
             </ul>
           </div>
